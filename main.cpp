@@ -3,7 +3,7 @@ using namespace std;
 int main()
 {
 
-   
+   //menu
     bool bandera = true;
     while (bandera)
     {
