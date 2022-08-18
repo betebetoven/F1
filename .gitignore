@@ -120,6 +120,8 @@ celerybeat.pid
 *.sage.py
 
 # Environments
+cmake-build-debug/
+.idea/
 *.exe
 *.xlsx
 *.pdf
