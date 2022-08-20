@@ -1,34 +1,26 @@
 // Linked List CPP 
+#include "ll.h"
+#include "nodo.h"
 #include<iostream>
+#include<string>
 
 using namespace std;
+//HOla mundo desde vscode
 
-class Node
-{
-public:
-    int data;
-    Node *next;
-    Node *Prev;
-};
-
-class List
-{
-    Node *head;
-    Node *tail;
-    Node *temp;
-    bool isEmpty()
+bool List::isEmpty()
     {
         return head == NULL;
     }
-public:
-    List()
-    {
-        head = NULL;
-        tail = NULL;
-    }
 
-    void insert(int x)
-    {
+List::List()
+{
+    head = NULL;
+    tail = NULL;
+    j = "estoy vivo otra vez"
+}
+
+void List::insert(int x)
+{
         temp = new Node;
         temp->data = x;
         if(isEmpty())
@@ -41,7 +33,7 @@ public:
         head = temp;
     }
 
-    void insertAtEnd(int x)
+    void List::insertAtEnd(int x)
     {
         temp = new Node;
         temp->data = x;
@@ -58,7 +50,7 @@ public:
         }
     }
 
-    void remove(int x)
+    void List::remove(int x)
     {
         temp = head;
         Node *prev;
@@ -78,7 +70,7 @@ public:
         }
     }
 
-    void find(int x)
+    void List::find(int x)
     {
         int i;
         for(i=1, temp = head;temp->next != NULL && temp->data != x;temp = temp->next, i++);
@@ -92,7 +84,7 @@ public:
         }
     }
 
-    void display()
+    void List::display()
     {
         if(!isEmpty())
         {
@@ -105,25 +97,7 @@ public:
             cout << "List is Empty!" << endl;
         }
     }
-};
 
-int main()
-{
-    List l;
-    l.display();
-    l.insert(15);
-    l.display();    
-    l.insert(25);
-    l.display();
-    l.insert(35);
-    l.display();
-    l.insert(45);
-    l.display();
-    l.find(15);
-    l.remove(25);
-    l.display();
-    l.insertAtEnd(55);
-    l.insertAtEnd(65);
-    l.display();
-}
+
+
 

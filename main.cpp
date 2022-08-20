@@ -1,9 +1,17 @@
+#include "ll.h"
+#include "nodo.h"
 #include<iostream>
+
+
 using namespace std;
 int main()
 {
 
    //menu
+   List l;
+   l.j = "no estoy vivo raios";
+   cout << l.j << endl;
+   
     bool bandera = true;
     while (bandera)
     {
