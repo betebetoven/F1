@@ -1,5 +1,5 @@
 // Linked List CPP 
-#include "ll.h"
+#include "List.h"
 #include "nodo.h"
 #include<iostream>
 #include<string>
@@ -16,7 +16,7 @@ List::List()
 {
     head = NULL;
     tail = NULL;
-    j = "estoy vivo otra vez"
+    j = "estoy vivo otra vez";
 }
 
 void List::insert(int x)
