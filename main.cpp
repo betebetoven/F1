@@ -8,8 +8,14 @@ int main()
 {
 
    //menu
-   List l;
-   l.j = "no estoy vivo raios";
+    List l;
+    for (int i = 0; i < 25; i++)
+    {
+        l.insert(i);
+    }
+    
+    l.display();
+   
    cout << l.j << endl;
    
     bool bandera = true;
@@ -46,10 +52,10 @@ int main()
     }
     
     
-        /* code */
+       
     }
     
     
     return 0;
     
-} // namespace name
+} 

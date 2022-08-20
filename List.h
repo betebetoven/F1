@@ -12,11 +12,14 @@ class List
     Node *tail;
     Node *temp;
     bool isEmpty();
+    
 public:
+    List();
     string j;
     void insert(int x);
     void insertAtEnd(int x);
     void remove(int x);
     void find(int x);
     void display();
+    int tamaño;
 };

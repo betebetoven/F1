@@ -1,23 +1,25 @@
 // Linked List CPP 
 #include "List.h"
-#include "nodo.h"
+//#include "nodo.h"
 #include<iostream>
 #include<string>
 
 using namespace std;
 //HOla mundo desde vscode
+List::List()
+{
+    tamaño = 0;
+    head = NULL;
+    tail = NULL;
+    j = "estoy vivo otra vez";
+}
 
 bool List::isEmpty()
     {
         return head == NULL;
     }
 
-List::List()
-{
-    head = NULL;
-    tail = NULL;
-    j = "estoy vivo otra vez";
-}
+
 
 void List::insert(int x)
 {
@@ -26,11 +28,26 @@ void List::insert(int x)
         if(isEmpty())
         {
             temp->next = NULL;
-            tail = temp;
+            temp->Prev = NULL;
+            head = temp;
+
         }
         else
-            temp->next = head;
-        head = temp;
+        {
+            Node *ahora;
+            ahora = head;
+            while (ahora->next != NULL)
+            {
+                ahora = ahora->next;
+
+            }
+            ahora->next =temp;
+            temp->Prev = ahora;
+            temp-> next = NULL;
+        }
+        tamaño= tamaño+1;
+
+          
     }
 
     void List::insertAtEnd(int x)
