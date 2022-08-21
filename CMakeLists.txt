@@ -4,5 +4,6 @@ project(F1)
 set(CMAKE_CXX_STANDARD 14)
 
 add_executable(F1
+        jsoncpp.cpp
         List.cpp
         main.cpp)
