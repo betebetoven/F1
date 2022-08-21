@@ -1,0 +1,6 @@
+[submodule "jsonc/vcpkg"]
+	path = jsonc/vcpkg
+	url = https://github.com/Microsoft/vcpkg.git
+[submodule "vcpkg"]
+	path = vcpkg
+	url = https://github.com/Microsoft/vcpkg.git
