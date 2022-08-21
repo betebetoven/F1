@@ -57,10 +57,10 @@ class tutorial
 public:
     string ancho;
     string alto;
-    List movimientos;
+    List<string> movimientos;
     
 
-    tutorial(string an, string al, List mov)
+    tutorial(string an, string al, List<string> mov)
     {
         ancho = an;
         alto = al;
@@ -86,28 +86,25 @@ int main()
     Json::Reader reader;
 
     reader.parse(file,actualJson);
-
+    
     //cout << "total json data: \n"<<actualJson<< endl;
-    List usuarios;
-    List artuclos;
-
+    List <Json::Value>usuarios;
+    
+    
     for (Json::Value objeto : actualJson["usuarios"])
     {
-        cout << "total json data: \n"<<objeto<< endl;
+        //usuario u(objeto["nick"].asString(), objeto["password"].asString(),objeto["monedas"].asString(), objeto["edad"].asString());
+        usuarios.insert(objeto);
+
     }
+     
+
+   
+    usuarios.display();
     
 ///////////////////////////////////////////////////////////////////////////////
    //menu
-    List l;
-    for (int i = 0; i < 25; i++)
-    {
-        l.insert(i);
-    }
     
-    l.display();
-   
-   cout << l.j << endl;
-   
     bool bandera = true;
     while (bandera)
     {

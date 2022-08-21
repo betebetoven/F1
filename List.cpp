@@ -1,29 +1,31 @@
 // Linked List CPP 
 #include "List.h"
 //#include "nodo.h"
+#include "json/json.h"
 #include<iostream>
 #include<string>
 
 using namespace std;
 //HOla mundo desde vscode
-List::List()
+template<typename G>
+ List<G>::List()
 {
     tamaño = 0;
     head = NULL;
     tail = NULL;
     j = "estoy vivo otra vez";
 }
-
-bool List::isEmpty()
+template<typename G>
+bool List<G>::isEmpty()
     {
         return head == NULL;
     }
 
 
-
-void List::insert(int x)
+template<typename G>
+void List<G>::insert(G x)
 {
-        temp = new Node;
+        temp = new Node<G>;
         temp->data = x;
         if(isEmpty())
         {
@@ -34,7 +36,7 @@ void List::insert(int x)
         }
         else
         {
-            Node *ahora;
+            Node<G> *ahora;
             ahora = head;
             while (ahora->next != NULL)
             {
@@ -49,10 +51,10 @@ void List::insert(int x)
 
           
     }
-
-    void List::insertAtEnd(int x)
+template<typename G>
+    void List<G>::insertAtEnd(G x)
     {
-        temp = new Node;
+        temp = new Node<G>;
         temp->data = x;
         temp->next = NULL;
         if(isEmpty())
@@ -66,11 +68,11 @@ void List::insert(int x)
             tail = temp;
         }
     }
-
-    void List::remove(int x)
+template<typename G>
+    void List<G>::remove(G x)
     {
         temp = head;
-        Node *prev;
+        Node<G> *prev;
         while(temp->next != NULL && temp->data != x)
         {
             prev = temp;
@@ -86,8 +88,8 @@ void List::insert(int x)
             cout << "Error: Number Not found..." << endl;
         }
     }
-
-    void List::find(int x)
+template<typename G>
+    void List<G>::find(G x)
     {
         int i;
         for(i=1, temp = head;temp->next != NULL && temp->data != x;temp = temp->next, i++);
@@ -100,8 +102,8 @@ void List::insert(int x)
             cout << "Error: Number Not found..." << endl;
         }
     }
-
-    void List::display()
+template<typename G>
+    void List<G>::display()
     {
         if(!isEmpty())
         {
@@ -114,6 +116,10 @@ void List::insert(int x)
             cout << "List is Empty!" << endl;
         }
     }
+    template class List<string>;
+    template class Node<string>;
+    template class List<Json::Value>;
+    template class Node<Json::Value>;
 
 
 

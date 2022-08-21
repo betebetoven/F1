@@ -5,21 +5,21 @@
 
 using namespace std;
 //HOla mundo desde vscode
-
+template<typename G>
 class List
 {
-    Node *head;
-    Node *tail;
-    Node *temp;
+    Node<G> *head;
+    Node<G> *tail;
+    Node<G> *temp;
     bool isEmpty();
     
 public:
     List();
     string j;
-    void insert(int x);
-    void insertAtEnd(int x);
-    void remove(int x);
-    void find(int x);
+    void insert(G x);
+    void insertAtEnd(G x);
+    void remove(G x);
+    void find(G x);
     void display();
     int tamaño;
 };

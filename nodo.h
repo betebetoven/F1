@@ -4,10 +4,12 @@
 
 using namespace std;
 //HOla mundo desde vscode
+template <typename T>
 class Node
 {
 public:
-    int data;
-    Node *next;
-    Node *Prev;
+    
+    T data;
+    Node<T> *next;
+    Node<T> *Prev;
 };
