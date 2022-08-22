@@ -8,12 +8,13 @@ using namespace std;
 template<typename G>
 class List
 {
+    public:
     Node<G> *head;
     Node<G> *tail;
     Node<G> *temp;
     bool isEmpty();
     
-public:
+
     List();
     string j;
     void insert(G x);
