@@ -93,7 +93,25 @@ Node<Json::Value> *login(List<Json::Value> usuarioh, string nombre, string contr
             
 } 
 
+void añadir_usuario()
+{   
+    string nick;
+    string password;
+    string edad;
+    cout <<"Ingrese UserName: \n"<< endl;
+    cin >> nick;
+cout <<"Ingrese Contraseña: \n"<< endl;
+cin >> password;
+cout <<"Ingrese Edad: \n"<< endl;
+cin >> edad;
+    string jeson = "{\"nick\":\""+nick+"\",\"password\":\""+password+"\",\"monedas\":\"0\",\"edad\":\""+edad+"\"}";
+    Json::Value actualJson;
+    Json::Reader reader;
+    reader.parse(jeson,actualJson);
+    usuarios_glob.insert(actualJson);
+    cout <<"Usuario Registrado: \n" <<actualJson<< endl;
 
+}
 
 
 void carga_usuario(){
@@ -245,6 +263,7 @@ int main()
         break;
     case 2:
         cout<<"2. " << endl;
+        añadir_usuario();
         
         break;
     case 3:
