@@ -92,7 +92,20 @@ Node<Json::Value> *login(List<Json::Value> usuarioh, string nombre, string contr
             return new Node<Json::Value>;
             
 } 
+void eliminar_cuenta(Node<Json::Value> *cuenta_eliminar)
+{
+    if (cuenta_eliminar->Prev != NULL)
+    cuenta_eliminar->Prev->next = cuenta_eliminar->next;
+    else
+    usuarios_glob.head = cuenta_eliminar->next;
+    if (cuenta_eliminar->next != NULL)
+    cuenta_eliminar->next->Prev = cuenta_eliminar->Prev;
+    cuenta_eliminar = NULL;
+    cuenta = new Node<Json::Value>;
 
+    
+
+}
 void añadir_usuario()
 {   
     string nick;
@@ -213,7 +226,11 @@ void menu2()
         break;
     case 3:
         cout<<"3. " << endl;
-        //aca va eliminar cuenta
+        eliminar_cuenta(cuenta);
+        usuarios_glob.display();
+
+        bandera = false;
+        
        
        
         break;
@@ -274,6 +291,7 @@ int main()
         break;
     case 4:
         cout<<"4. " << endl;
+        
         break;
     case 5:
         cout<<"5. " << endl;
