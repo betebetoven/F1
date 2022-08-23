@@ -142,10 +142,12 @@ void llenaderecha(Node<Json::Value> *n,Json::Value x)
     {
         llenaderecha(n->derecha,x);
     }
-    
-    
-    
-
+}
+void imprimederecha(Node<Json::Value> *n)
+{
+    cout << n->data;
+    if (n->derecha != NULL)
+        imprimederecha(n->derecha);
 
 }
 
@@ -164,11 +166,38 @@ void categoria_constructor(Json::Value object)//aca entra el actualjson de carga
         cabecita = cabecita->next;
     }
     cabecita->derecha = NULL;
-    
+    //hacemos ingreso a la matriz rara esta de c++
+    cabecita = categoria.head;
+    while (cabecita != NULL)
+    {
+        for (Json::Value n : object["articulos"])
+        {
+            if (cabecita->data["categoria"].asString()==n["categoria"].asString())
+            {
+                Node<Json::Value> *primero = cabecita;
+                llenaderecha(cabecita,n);
+                cabecita = primero;
+            }
+        }
+        cabecita = cabecita->next;
+    }
+
+    //MOSTRADO EN CONSOLA LA TIENDA DE CATEGORIAS
+    cabecita = categoria.head;
+    cout << "Tienda: "<<endl;
+    while (cabecita != NULL)
+    {   cout << "----------------------------"<<endl;
+        imprimederecha(cabecita);
+        cout << "----------------------------"<<endl;
+        
+        cabecita = cabecita->next;
+    }
+
     
         
 
 }
+
 
 
 void carga_usuario(){
