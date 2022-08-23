@@ -13,6 +13,7 @@ List <Json::Value>usuarios_glob;
     List <Json::Value>articulos_glob;
     List <Json::Value>movimientos_glob;
     List <Json::Value>categoria;
+    List<Json::Value>tut_global;
 
     Node<Json::Value> *cuenta;
     
@@ -218,7 +219,10 @@ void carga_usuario(){
     
     
     
-
+//PARA LA COMPRA AGREGAR UN APUNTARODR AL INVENTARIO DE SKINS QUE TIENE EL USUARIO
+//INICIALIZARLA OCMO NULL ANTES Y DE ULTIMO EN LA COMPRA AGREGARLE ALGUNA MIERDA POR AHI//
+//APUNTADOR LISTA = NEW lISTA DE JSON VALUE POR SUPUESTO PARA IGRESAR LA REFERENCIA D ELOS DATOS 
+//DE LA LISTA DE LA TIENDA
     
 
     
@@ -229,19 +233,16 @@ void carga_usuario(){
        // articulos_glob.insert(objeto);
     categoria_constructor(actualJson);
     
+    tut_global.insert(actualJson["tutorial"]);
     for (Json::Value objeto : actualJson["tutorial"]["movimientos"])
-        movimientos.insert(objeto);
+        tut_global.insert(objeto);
     
-     tutorial tut(actualJson["tutorial"]["ancho"].asString(),actualJson["tutorial"]["alto"].asString(), movimientos);
-     tutorial_global = tut;
+    
 
-   
+    cout << "USUARIOS---------------------------------"<< endl;
     usuarios_glob.display();
-    articulos_glob.display();
-    
-    cout << tutorial_global.alto<< endl;
-    cout << tutorial_global.ancho<< endl;
-    tutorial_global.movimientos.display();
+    cout << "TUTORIAL---------------------------------"<< endl;
+    tut_global.display();
     
 
     
