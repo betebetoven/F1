@@ -1,5 +1,6 @@
 // Linked List CPP 
 #pragma once
+#include "List.h"
 #include<iostream>
 
 using namespace std;
@@ -13,4 +14,6 @@ public:
     Node<T> *next;
     Node<T> *Prev;
     Node<T> *derecha;
+    Node<T> *inventario;
+    Node<T> *movimientos;
 };
