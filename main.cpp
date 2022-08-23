@@ -127,15 +127,49 @@ cin >> edad;
     cout <<"Usuario Registrado: \n" <<actualJson<< endl;
 
 }
-void categoria_constructor()
+
+void llenaderecha(Node<Json::Value> *n,Json::Value x)
+{
+    if (n->derecha == NULL)
+    {
+        Node<Json::Value> *nuevo = new Node<Json::Value>;
+        nuevo -> data = x;
+        nuevo -> derecha = NULL;
+        n->derecha = nuevo;
+
+    }
+    else
+    {
+        llenaderecha(n->derecha,x);
+    }
+    
+    
+    
+
+
+}
+
+void categoria_constructor(Json::Value object)//aca entra el actualjson de carga masiva
 {
     string jeson = "[{\"categoria\": \"Comun\"},{\"categoria\": \"Epico\"},{\"categoria\": \"Raro\"},{\"categoria\": \"Legendario\"}]";
     Json::Value actualJson;
     Json::Reader reader;
     reader.parse(jeson,actualJson);
-    for (Json::Value objeto : actualJson["categoria"])
-        usuarios_glob.insert(objeto);
+    for (Json::Value objeto : actualJson)
+        categoria.insert(objeto);
+    Node<Json::Value> *cabecita = categoria.head;
+    while (cabecita->next != NULL)
+    {
+        cabecita->derecha = NULL;
+        cabecita = cabecita->next;
+    }
+    cabecita->derecha = NULL;
+    
+    
+        
+
 }
+
 
 void carga_usuario(){
       ifstream file("C:/Users/Alberto/Desktop/cys/EDDS2/F1/example.json");
@@ -162,8 +196,9 @@ void carga_usuario(){
     
     for (Json::Value objeto : actualJson["usuarios"])
         usuarios_glob.insert(objeto);
-    for (Json::Value objeto : actualJson["articulos"])
-        articulos_glob.insert(objeto);
+    //for (Json::Value objeto : actualJson["articulos"])
+       // articulos_glob.insert(objeto);
+    categoria_constructor(actualJson);
     
     for (Json::Value objeto : actualJson["tutorial"]["movimientos"])
         movimientos.insert(objeto);
@@ -188,6 +223,9 @@ void carga_usuario(){
 
     
 }
+
+
+
 
 void opcion3()
 {
@@ -257,6 +295,7 @@ void menu2()
     }
     
 }
+
 
 int main()
 {
