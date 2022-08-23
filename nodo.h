@@ -12,4 +12,5 @@ public:
     T data;
     Node<T> *next;
     Node<T> *Prev;
+    Node<T> *derecha;
 };

@@ -12,6 +12,8 @@ using namespace std;
 List <Json::Value>usuarios_glob;
     List <Json::Value>articulos_glob;
     List <Json::Value>movimientos_glob;
+    List <Json::Value>categoria;
+
     Node<Json::Value> *cuenta;
     
    
@@ -125,7 +127,15 @@ cin >> edad;
     cout <<"Usuario Registrado: \n" <<actualJson<< endl;
 
 }
-
+void categoria_constructor()
+{
+    string jeson = "[{\"categoria\": \"Comun\"},{\"categoria\": \"Epico\"},{\"categoria\": \"Raro\"},{\"categoria\": \"Legendario\"}]";
+    Json::Value actualJson;
+    Json::Reader reader;
+    reader.parse(jeson,actualJson);
+    for (Json::Value objeto : actualJson["categoria"])
+        usuarios_glob.insert(objeto);
+}
 
 void carga_usuario(){
       ifstream file("C:/Users/Alberto/Desktop/cys/EDDS2/F1/example.json");

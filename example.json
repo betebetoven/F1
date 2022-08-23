@@ -22,21 +22,21 @@
     "articulos":[
     {
     "id":"0",
-    "categoria":"asalto",
+    "categoria":"Legendario",
     "precio":"12",
     "nombre":"M13",
     "src":"e"
     },
     {
     "id":"1",
-    "categoria":"subfusil",
+    "categoria":"Epico",
     "precio":"23",
     "nombre":"Mac",
     "src":"e"
     },
     {
     "id":"2",
-    "categoria":"escopeta",
+    "categoria":"Raro",
     "precio":"56",
     "nombre":"Mimilona",
     "src":"e"
