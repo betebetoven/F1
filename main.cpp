@@ -334,6 +334,9 @@ void menu2()
     cout<<"3. Eliminar Cuenta" << endl;
     cout<<"4. Salir al menú principal" << endl;
     cout<<"5. Ver tutorial" << endl;
+    cout <<"6. Jugar" << endl;
+    cout << "7. ver jugadas "<< endl;
+
    
     cin >> entradita;
     switch (entradita)
