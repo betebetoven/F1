@@ -321,6 +321,41 @@ void opcion3()
     //usuarios_glob.display();
 
 }
+
+
+void jugar(string x, string y)
+{
+    Node<Json::Value> *n = cuenta;
+    if(cuenta->movimientos == NULL)
+    {
+    
+    n->movimientos = new Node <Json::Value>;//el nodo movimientos es el head de la lista de movimientos
+    n->movimientos->next = NULL;
+    }
+    Node<Json::Value> *t = n->movimientos;
+    while (t->next != NULL)
+    t = t->next;
+
+    string jeson = "{\"x\": \""+x+"\",\"y\": \""+y+"\"}";
+    Json::Value actualJson;
+    Json::Reader reader;
+    reader.parse(jeson,actualJson);
+    Node<Json::Value> *nv = new Node<Json::Value>;
+    nv->data = actualJson;
+    t->next = nv;
+    nv->next = NULL;
+
+}
+void imprimir_jugadas(Node<Json::Value>*root)
+{
+    cout << root->data << endl;
+    if(root-> next != NULL)
+        imprimir_jugadas(root->next);
+    else
+    return;
+
+}
+
 void menu2()
 {
     bool bandera = true;
@@ -339,6 +374,8 @@ void menu2()
 
    
     cin >> entradita;
+    string x;
+        string y;
     switch (entradita)
     {
     case 1:
@@ -375,6 +412,20 @@ void menu2()
     cout<<"5. " << endl;
         mostrar_tutorial();
         break;
+    case 6:
+        cout<<"6. " << endl;
+        
+        cout <<"Ingresar cordenada x: "<< endl ;
+        cin >> x;
+        cout <<"Ingresar cordenada y: "<< endl ;
+        cin >> y;
+        jugar(x,y);
+        break;
+    case 7:
+    cout<<"7. " << endl;
+        imprimir_jugadas(cuenta->movimientos);
+        break;
+
 
   
     

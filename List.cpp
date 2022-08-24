@@ -120,6 +120,7 @@ template<typename G>
     template class Node<string>;
     template class List<Json::Value>;
     template class Node<Json::Value>;
+    
 
 
 
