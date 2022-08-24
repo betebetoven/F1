@@ -128,7 +128,36 @@ cin >> edad;
     cout <<"Usuario Registrado: \n" <<actualJson<< endl;
 
 }
-
+void va(Node <Json::Value> *root, Json::Value entrada)
+{
+    if(root==NULL)
+    {
+    string jeson = "{\"categoria\": \""+entrada["categoria"].asString()+"\"}";
+    Json::Value actualJson;
+    Json::Reader reader;
+    reader.parse(jeson,actualJson);
+    categoria.insert(actualJson);
+    }
+    else 
+    if (root->data["categoria"].asString()!=entrada["categoria"].asString() && root-> next != NULL)
+    va(root->next, entrada);
+    else 
+    if (root->data["categoria"].asString()!=entrada["categoria"].asString() && root-> next == NULL)
+    {
+        string jeson = "{\"categoria\": \""+entrada["categoria"].asString()+"\"}";
+        Json::Value actualJson;
+        Json::Reader reader;
+        reader.parse(jeson,actualJson);
+        categoria.insert(actualJson);
+        return;
+        /* code */
+    }
+    else 
+    return;
+    
+    
+    
+}
 void llenaderecha(Node<Json::Value> *n,Json::Value x)
 {
     if (n->derecha == NULL)
@@ -154,12 +183,13 @@ void imprimederecha(Node<Json::Value> *n)
 
 void categoria_constructor(Json::Value object)//aca entra el actualjson de carga masiva
 {
-    string jeson = "[{\"categoria\": \"Comun\"},{\"categoria\": \"Epico\"},{\"categoria\": \"Raro\"},{\"categoria\": \"Legendario\"}]";
-    Json::Value actualJson;
-    Json::Reader reader;
-    reader.parse(jeson,actualJson);
-    for (Json::Value objeto : actualJson)
-        categoria.insert(objeto);
+    
+    for (Json::Value objeto : object["articulos"])
+        va(categoria.head,objeto);
+
+    //ingresan todos los tipos de categorias sin repetirse
+
+
     Node<Json::Value> *cabecita = categoria.head;
     while (cabecita->next != NULL)
     {
@@ -229,8 +259,8 @@ void carga_usuario(){
     
     for (Json::Value objeto : actualJson["usuarios"])
         usuarios_glob.insert(objeto);
-    //for (Json::Value objeto : actualJson["articulos"])
-       // articulos_glob.insert(objeto);
+    for (Json::Value objeto : actualJson["articulos"])
+       articulos_glob.insert(objeto);
     categoria_constructor(actualJson);
     
     tut_global.insert(actualJson["tutorial"]);

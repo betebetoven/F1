@@ -22,21 +22,35 @@
     "articulos":[
     {
     "id":"0",
-    "categoria":"Legendario",
+    "categoria":"asalto",
     "precio":"12",
     "nombre":"M13",
     "src":"e"
     },
     {
     "id":"1",
-    "categoria":"Epico",
+    "categoria":"subfusil",
     "precio":"23",
     "nombre":"Mac",
     "src":"e"
     },
     {
     "id":"2",
-    "categoria":"Raro",
+    "categoria":"escopeta",
+    "precio":"56",
+    "nombre":"Mimilona",
+    "src":"e"
+    },
+    {
+    "id":"2",
+    "categoria":"escopeta",
+    "precio":"56",
+    "nombre":"Mimilona",
+    "src":"e"
+    },
+    {
+    "id":"2",
+    "categoria":"F",
     "precio":"56",
     "nombre":"Mimilona",
     "src":"e"
