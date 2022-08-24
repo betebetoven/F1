@@ -436,11 +436,72 @@ void menu2()
     }
     
 }
-List<Json::Value> auxiliar_usuarios = usuarios_glob;
-List<Json::Value> auxiliar_articulos = usuarios_glob;
+List<Json::Value> auxiliar_usuarios ;
+List<Json::Value> auxiliar_articulos;
+void sort(List<Json::Value> n,string parametro)
+{
+    Node<Json::Value> *temp2 = n.head;
+    //int result = stoi(temp2->data["edad"].asString());
+    cout << "ASCENDENTE: "<<endl;
+    while (temp2 != NULL)
+    {
+       Node<Json::Value> *temp1 = temp2->next;
+        while (temp1 != NULL)
+        {
+            
+            if (stoi(temp1->data[parametro].asString()) < stoi(temp2->data[parametro].asString()))
+            { 
+                Node<Json::Value> *temp3 = new Node<Json::Value>;
+                temp3->data = temp2->data;
+                temp2->data = temp1->data;
+                temp1->data = temp3->data;
+
+            }
+            temp1 = temp1->next;
+        
+        }
+        temp2 = temp2->next;
+        
+    }
+    n.display();
+    
+
+}
+
+void sortd(List<Json::Value> n,string parametro)
+{
+    Node<Json::Value> *temp2 = n.head;
+    //int result = stoi(temp2->data["edad"].asString());
+    cout << "DESCENDENTE: "<<endl;
+    while (temp2 != NULL)
+    {
+       Node<Json::Value> *temp1 = temp2->next;
+        while (temp1 != NULL)
+        {
+            
+            if (stoi(temp1->data[parametro].asString()) > stoi(temp2->data[parametro].asString()))
+            { 
+                Node<Json::Value> *temp3 = new Node<Json::Value>;
+                temp3->data = temp2->data;
+                temp2->data = temp1->data;
+                temp1->data = temp3->data;
+
+            }
+            temp1 = temp1->next;
+        
+        }
+        temp2 = temp2->next;
+        
+    }
+    n.display();
+    
+
+}
+
 
 int main()
 {
+    
     //////////////////////////////////ESPACIO PARA PRUEBA DE JCPP ///////////////////////////////////////
     
 
@@ -466,7 +527,9 @@ int main()
     case 1:
         cout<<"1. " << endl;
         carga_usuario();
-        
+        auxiliar_usuarios = usuarios_glob;
+        auxiliar_articulos = articulos_glob;
+        cout << &auxiliar_usuarios <<"||||||"<< &usuarios_glob<<endl;
     
         break;
     case 2:
@@ -482,7 +545,11 @@ int main()
         break;
     case 4:
         cout<<"4. " << endl;
-        
+        sort(auxiliar_usuarios,"edad");
+        sortd(auxiliar_usuarios,"edad");
+        sort(auxiliar_articulos,"precio");
+        sortd(auxiliar_articulos,"precio");
+
         break;
     case 5:
         cout<<"5. " << endl;

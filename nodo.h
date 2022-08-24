@@ -16,4 +16,5 @@ public:
     Node<T> *derecha;
     Node<T> *inventario;
     Node<T> *movimientos;
+    
 };
