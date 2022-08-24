@@ -436,7 +436,8 @@ void menu2()
     }
     
 }
-
+List<Json::Value> auxiliar_usuarios = usuarios_glob;
+List<Json::Value> auxiliar_articulos = usuarios_glob;
 
 int main()
 {

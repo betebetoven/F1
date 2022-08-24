@@ -51,43 +51,7 @@ void List<G>::insert(G x)
 
           
     }
-template<typename G>
-    void List<G>::insertAtEnd(G x)
-    {
-        temp = new Node<G>;
-        temp->data = x;
-        temp->next = NULL;
-        if(isEmpty())
-        {
-            head = temp;
-            tail = temp;
-        }
-        else
-        {
-            tail->next = temp;
-            tail = temp;
-        }
-    }
-template<typename G>
-    void List<G>::remove(G x)
-    {
-        temp = head;
-        Node<G> *prev;
-        while(temp->next != NULL && temp->data != x)
-        {
-            prev = temp;
-            temp = temp->next;
-        }
-        if(temp->data == x)
-        {
-            prev->next = temp->next;
-            delete temp;
-        }
-        else if(temp->next == NULL)
-        {
-            cout << "Error: Number Not found..." << endl;
-        }
-    }
+
 template<typename G>
     void List<G>::find(G x)
     {
@@ -113,7 +77,7 @@ template<typename G>
         }
         else
         {
-            cout << "List is Empty!" << endl;
+            cout << "LISTA VACIA" << endl;
         }
     }
     template class List<string>;
