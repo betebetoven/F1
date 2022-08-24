@@ -498,7 +498,52 @@ void sortd(List<Json::Value> n,string parametro)
 
 }
 
+void imprimirusuarios()
+{
+    string texto = "digraph G\n{\n        node[shape = circle]\n        node[style = filled]\n        node[fillcolor = \"#EEEEE\"]\n        node[color = \"#EEEEE\"]\n        node[color = \"#31CEF0\"]\n";
+    Node<Json::Value> *temp = auxiliar_usuarios.head;
+    while (temp != NULL)
+    {
+        ostringstream get_the_address; 
+        get_the_address << temp;
+        string address =  "A"+get_the_address.str(); 
+        ostringstream get_the_address2; 
+        get_the_address2 << temp->next;
+        string addressnext =  "A"+get_the_address2.str(); 
+        string datos = temp->data["nick"].asString()+"\n"+temp->data["edad"].asString()+"\n"+temp->data["monedas"].asString();
+        string j = address+"[label=\""+datos+ "\"]\n";
+        if(temp->next != NULL)
+        {
+        j+= address+"->"+addressnext+";\n";
+        j+= addressnext+"->"+address+";\n";
+        }
+        else
+        {
+            ostringstream get_the_address; 
+            get_the_address << auxiliar_usuarios.head;
+            string addresshead =  "A"+get_the_address.str(); 
+            j+= address+"->"+addresshead+";\n";
+            j+= addresshead+"->"+address+";\n";
 
+            
+
+
+
+        }
+        texto += j;
+        temp = temp->next;
+    }
+    texto += "}";
+
+    cout << texto <<endl;
+
+
+}
+
+void imprimirarticulos()
+{
+    
+}
 int main()
 {
     
@@ -527,8 +572,7 @@ int main()
     case 1:
         cout<<"1. " << endl;
         carga_usuario();
-        auxiliar_usuarios = usuarios_glob;
-        auxiliar_articulos = articulos_glob;
+        
         cout << &auxiliar_usuarios <<"||||||"<< &usuarios_glob<<endl;
     
         break;
@@ -545,10 +589,13 @@ int main()
         break;
     case 4:
         cout<<"4. " << endl;
+        auxiliar_usuarios = usuarios_glob;
+        auxiliar_articulos = articulos_glob;
         sort(auxiliar_usuarios,"edad");
         sortd(auxiliar_usuarios,"edad");
         sort(auxiliar_articulos,"precio");
         sortd(auxiliar_articulos,"precio");
+        imprimirusuarios();
 
         break;
     case 5:
