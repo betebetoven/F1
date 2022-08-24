@@ -284,7 +284,28 @@ void carga_usuario(){
     
 }
 
+Json::Value dequeue_tutorial()
+{
+    Node<Json::Value> *n = tut_global.head;
+    tut_global.head = tut_global.head->next;
+    tut_global.tamaño = tut_global.tamaño-1;
+    return n->data;
+    
+    
 
+
+}
+void mostrar_tutorial()
+{
+    //lo raro de esta funcion es que solo se puede realizar una sola vez
+    cout << "DEQUEUE DE TUTORIAL: "<<endl;
+    while (tut_global.tamaño>=1)
+    {
+        cout << dequeue_tutorial()<<endl;
+    }
+    tut_global.display();
+    
+}
 
 
 void opcion3()
@@ -312,6 +333,7 @@ void menu2()
     cout<<"2. cambiar Contraseña" << endl;
     cout<<"3. Eliminar Cuenta" << endl;
     cout<<"4. Salir al menú principal" << endl;
+    cout<<"5. Ver tutorial" << endl;
    
     cin >> entradita;
     switch (entradita)
@@ -346,6 +368,11 @@ void menu2()
         cout<<"4. " << endl;
         bandera = false;
         break;
+    case 5:
+    cout<<"5. " << endl;
+        mostrar_tutorial();
+        break;
+
   
     
     default:
