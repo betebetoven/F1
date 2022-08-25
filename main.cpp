@@ -539,10 +539,111 @@ void imprimirusuarios()
 
 
 }
+string conectarderecha(Node<Json::Value> *temp)
+{
+    string texto = "";
+    Node<Json::Value> *n = temp;
+    while (n!=NULL)
+    {
+        ostringstream get_the_address; 
+        get_the_address << n;
+        string address =  "A"+get_the_address.str(); 
+        ostringstream get_the_address2; 
+        get_the_address2 << n->derecha;
+        string addressnext =  "A"+get_the_address2.str(); 
+        string datos = n->data["nombre"].asString()+"\n"+n->data["id"].asString()+"\n"+n->data["precio"].asString()+"\n"+n->data["categoria"].asString()+"\n";
+        string j = address+"[label=\""+datos+ "\"]\n";
+        if(n->derecha != NULL)
+        {
+        j+= address+"->"+addressnext+";\n";
+       
+        }
+        else
+        {
+            ostringstream get_the_address; 
+            get_the_address << categoria.head;
+            string addresshead =  "A"+get_the_address.str(); 
+           
 
+        }
+        texto += j;
+        n = n->derecha;
+    }
+    return texto;
+    
+        
+        
+
+
+}
 void imprimirarticulos()
 {
+    //impresion vertical
+    string texto = "digraph G\n{\n        node[shape = circle]\n        node[style = filled]\n        node[fillcolor = \"#EEEEE\"]\n        node[color = \"#EEEEE\"]\n        node[color = \"#31CEF0\"]\n";
+    Node<Json::Value> *temp = categoria.head;
+    while (temp != NULL)
+    {
+        ostringstream get_the_address; 
+        get_the_address << temp;
+        string address =  "A"+get_the_address.str(); 
+        ostringstream get_the_address2; 
+        get_the_address2 << temp->next;
+        string addressnext =  "A"+get_the_address2.str(); 
+        string datos = temp->data["categoria"].asString();
+        string j = address+"[label=\""+datos+ "\"]\n";
+        if(temp->next != NULL)
+        {
+        j+= address+"->"+addressnext+";\n";
+       
+        }
+        else
+        {
+            ostringstream get_the_address; 
+            get_the_address << categoria.head;
+            string addresshead =  "A"+get_the_address.str(); 
+           
+
+        }
+        texto += j+"\n";
+        texto += conectarderecha(temp);
+
+
+
+
+        temp = temp->next;
+    }
+    ///aca ponemos los ranks
+    string p = "\n";
+    p += "\n{rank = same; ";
+    Node<Json::Value> *rank = categoria.head;
+    while (rank != NULL)
+    {
+        ostringstream get_the_address; 
+        get_the_address << rank;
+        string address =  "A"+get_the_address.str(); 
+        if(rank->next != NULL)
+        p+=" "+address+"; ";
+        else
+        p+=" "+address+" ";
+        rank = rank->next;
+     
+    }
+    p+= "}\n";
     
+    
+
+    texto += p;
+
+
+
+    texto += "}";
+
+    cout << texto <<endl;
+
+
+
+
+    ////////////////
 }
 int main()
 {
@@ -596,6 +697,7 @@ int main()
         sort(auxiliar_articulos,"precio");
         sortd(auxiliar_articulos,"precio");
         imprimirusuarios();
+        imprimirarticulos();
 
         break;
     case 5:
