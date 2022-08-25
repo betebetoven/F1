@@ -356,6 +356,69 @@ void imprimir_jugadas(Node<Json::Value>*root)
 
 }
 
+void imprimir_jugadas_graphviz()
+{
+    string texto = "digraph G\n{\n        node[shape = circle]\n        node[style = filled]\n        node[fillcolor = \"#EEEEE\"]\n        node[color = \"#EEEEE\"]\n        node[color = \"#31CEF0\"]\n";
+    Node<Json::Value> *temp = cuenta->movimientos;
+    while (temp != NULL)
+    {
+        ostringstream get_the_address; 
+        get_the_address << temp;
+        string address =  "A"+get_the_address.str(); 
+        ostringstream get_the_address2; 
+        get_the_address2 << temp->next;
+        string addressnext =  "A"+get_the_address2.str(); 
+        string datos = temp->data["x"].asString()+"\n"+temp->data["y"].asString();
+        string j = address+"[label=\""+datos+ "\"]\n";
+        if(temp->next != NULL)
+        {
+        j+= address+"->"+addressnext+";\n";
+        j+= addressnext+"->"+address+";\n";
+        }
+        else
+        {
+            ostringstream get_the_address; 
+            get_the_address << cuenta->movimientos;
+            string addresshead =  "A"+get_the_address.str(); 
+            //j+= address+"->"+addresshead+";\n";
+            //j+= addresshead+"->"+address+";\n";
+
+            
+
+
+
+        }
+        texto += j;
+        temp = temp->next;
+    }
+
+    ///aca ponemos los ranks
+    string p = "\n";
+    p += "\n{rank = same; ";
+    Node<Json::Value> *rank = cuenta-> movimientos;
+    while (rank != NULL)
+    {
+        ostringstream get_the_address; 
+        get_the_address << rank;
+        string address =  "A"+get_the_address.str(); 
+        if(rank->next != NULL)
+        p+=" "+address+"; ";
+        else
+        p+=" "+address+" ";
+        rank = rank->next;
+     
+    }
+    p+= "}\n";
+    
+    
+
+    texto += p;
+    texto += "}";
+
+    cout << texto <<endl;
+
+}
+
 void menu2()
 {
     bool bandera = true;
@@ -424,6 +487,7 @@ void menu2()
     case 7:
     cout<<"7. " << endl;
         imprimir_jugadas(cuenta->movimientos);
+        imprimir_jugadas_graphviz();
         break;
 
 
