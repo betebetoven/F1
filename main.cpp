@@ -533,6 +533,28 @@ void imprimirusuarios()
         texto += j;
         temp = temp->next;
     }
+
+    ///aca ponemos los ranks
+    string p = "\n";
+    p += "\n{rank = same; ";
+    Node<Json::Value> *rank = auxiliar_usuarios.head;
+    while (rank != NULL)
+    {
+        ostringstream get_the_address; 
+        get_the_address << rank;
+        string address =  "A"+get_the_address.str(); 
+        if(rank->next != NULL)
+        p+=" "+address+"; ";
+        else
+        p+=" "+address+" ";
+        rank = rank->next;
+     
+    }
+    p+= "}\n";
+    
+    
+
+    texto += p;
     texto += "}";
 
     cout << texto <<endl;

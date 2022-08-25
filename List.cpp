@@ -52,20 +52,7 @@ void List<G>::insert(G x)
           
     }
 
-template<typename G>
-    void List<G>::find(G x)
-    {
-        int i;
-        for(i=1, temp = head;temp->next != NULL && temp->data != x;temp = temp->next, i++);
-        if(temp->data == x)
-        {
-            cout << "Found at position:" << i << endl;
-        }
-        else if(temp->next == NULL)
-        {
-            cout << "Error: Number Not found..." << endl;
-        }
-    }
+
 template<typename G>
     void List<G>::display()
     {
