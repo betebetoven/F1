@@ -232,7 +232,7 @@ void categoria_constructor(Json::Value object)//aca entra el actualjson de carga
 
 
 void carga_usuario(){
-      ifstream file("C:/Users/Alberto/Desktop/cys/EDDS2/F1/example.json");
+      ifstream file("C:/Users/Alberto/Desktop/cys/EDDS2/F1/f1_masiva.json");
     //cout << "total json data: \n"<<file.<< endl;
     Json::Value actualJson;
     Json::Reader reader;
